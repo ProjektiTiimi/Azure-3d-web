@@ -11,16 +11,17 @@ Toiminnallisuus, kuten aiemmin toteutetussa 3D-Web -sovelluksessa lisättynä se
 ## Teknologiat 
 * Azure
 * UI 
- * Azure Static Web App
- * React.js + TypeScript 
+  * Azure Static Web App
+  * React.js + TypeScript 
 * API 
- * Azure Functions ja/tai Container Instances
- * node.js (+TypeScript) 
+  * Azure Functions ja/tai Container Instances
+  * node.js (+TypeScript) 
 * DB 
   * Azure PaaS
   * esim. Cosmos DB, PostgreSQL, MSSQL
 * Testiautomaatio
   * Robot Framework 
+  * Automaattinen testaus ennen julkaisua.
 
 ## Työkalut 
 * Azure
