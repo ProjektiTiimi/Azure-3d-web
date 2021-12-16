@@ -17,13 +17,13 @@
     },
     {
       "type": "cosmosDB",
-      "direction": "out",
-      "name": "outputDocument",
+      "direction": "in",
+      "name": "inputDocument",
       "databaseName": "3d-web-db",
       "collectionName": "Billers",
-      "createIfNotExists": "true",
-      "connectionStringSetting": "3dwebdb_DOCUMENTDB"
-  }
+      "connectionStringSetting": "3dwebdb_DOCUMENTDB",
+      "partitionKey": "undefined"
+    }
   ],
-  "scriptFile": "../dist/add-customer/index.js"
+  "scriptFile": "../dist/get-customers/index.js"
 }
