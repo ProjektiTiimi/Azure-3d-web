@@ -26,6 +26,7 @@ Toiminnallisuus, kuten aiemmin toteutetussa 3D-Web -sovelluksessa lisättynä se
 ## Työkalut 
 * Azure
 * Git 
+  * Kaikki tuotokset Git-versionhallintaan. 
 * Slack
 
 ## Ei-toiminnalliset vaatimukset
@@ -35,4 +36,4 @@ Toiminnallisuus, kuten aiemmin toteutetussa 3D-Web -sovelluksessa lisättynä se
 - myös apikey käy tunnistautumiseksi.
 - tämä koskee käyttöliittymää ja API-palveluita.
 2. Eri laskuttajien tietojen tulee olla loogisesti eroteltuna tietokannan tasolla. Laskuttajat eivät siis voi nähdä tai muokata toisten laskuttajien tietoja missään olosuhteissa.
-3. Asiakastiedot tulee salata tietokannasa.
+3. Asiakastiedot tulee salata tietokannassa.
