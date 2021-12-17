@@ -24,10 +24,9 @@ function Customerlist() {
 
     const getData = async () => {
         try {
-            const response = await fetch(`${configData.API_URL}:${configData.API_PORT}/customers`, {
+            const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/getCustomers?`, {
                 method: 'GET',
-                headers: { 'Content-type': 'application/json',
-                            'x-access-token' : JSON.parse(currentUser!).token}
+                headers: { 'Content-type': 'application/json'}
             });
             const data = await response.json();
             if(response.ok){
@@ -43,9 +42,9 @@ function Customerlist() {
 
     }
     React.useEffect(()=> {
-        if (currentUser) {            
+/*        if (currentUser) {            
             setToken(JSON.parse(currentUser!).token);
-        }
+        }*/
         getData();
     }, []);
 
