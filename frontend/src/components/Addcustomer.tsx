@@ -52,15 +52,14 @@ const Addcustomer = () => {
 
         return true;
     };
-    
+    //https://3d-web-api.azurewebsites.net/api/add-customer?
+    //http://localhost:7071/api/add-customer?
     const handleClick = (): void =>{
         const isValid = validate();
         if (isValid){
-            fetch(`${configData.API_URL}:${configData.API_PORT}/customer`, {
+            fetch('https://3d-web-api.azurewebsites.net/api/add-customer?', {
                 method: 'POST',
-                headers: { 'Content-type': 'application/json',
-                'x-access-token': token
-                },
+                headers: { 'Content-type': 'application/json'},
                 body: JSON.stringify({
                     YTunnus: input.YTunnus,
                     asiakkaanNimi: input.asiakkaanNimi,
