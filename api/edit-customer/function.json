@@ -25,7 +25,7 @@
       "createIfNotExists": true,
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
       "partitionKey": "undefined",
-      "sqlQuery": "REPLACE * FROM customerlist WHERE id={id}"
+      "sqlQuery": "UPDATE customerlist SET Ytunnus={Ytunnus}, asiakkaanNimi={asiakkaanNmi}, Postiosoite={Postiosoite}, Postinumero={Postinumero}, Toimipaikka={Toimipaikka} WHERE customerlist.id={id}"
     }
   ],
   "scriptFile": "../dist/edit-customer/index.js"
