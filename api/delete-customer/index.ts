@@ -6,7 +6,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     let cList = idocument[0].customerlist;
 
     try {
-        let deleteC = cList.findIndex( ({id}) => id == req.body.id);
+        let deleteC = cList.findIndex( ({_id}) => _id == req.body._id);
         if(deleteC > -1){
             context.log("delete customer with index " + deleteC);
     
