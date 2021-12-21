@@ -103,7 +103,10 @@ const InvoicePDF = () => {
             return info});
         let riviTiedot: string = laskunTiedot.toString();
 
-        fetch(`${configData.API_URL}:${configData.API_PORT}/invoice`, {
+        //https://3d-web-api.azurewebsites.net/api/Billers/getCustomers?
+        //http://localhost:7071/api/Billers/addinvoice
+
+        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/addinvoice?`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json',
             'x-access-token': token
@@ -168,7 +171,7 @@ const InvoicePDF = () => {
             return info});
         let riviTiedot: string = laskunTiedot.toString();
 
-        fetch(`${configData.API_URL}:${configData.API_PORT}/invoice`, {
+        fetch(`http://localhost:7071/api/Billers/addinvoice`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json',
             'x-access-token': token
