@@ -1,12 +1,10 @@
 name: Build and deploy Node.js project to Azure Function App - 3d-web-api
 
-
-
 on:
   push:
     branches:
       - main
-     paths:
+    paths:
      - 'api/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
@@ -20,35 +18,32 @@ env:
   NODE_VERSION: '14.x' # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
 
-
 jobs:
   build-and-deploy:
     runs-on: windows-latest
-  steps:
+    steps:
     - name: 'Checkout GitHub Action'
-    uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
-- name: Setup Node ${{ env.NODE_VERSION }} Environment
-  uses: actions/setup-node@v1
-  with:
-    node-version: ${{ env.NODE_VERSION }}
+    - name: Setup Node ${{ env.NODE_VERSION }} Environment
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
 
-- name: 'Resolve Project Dependencies Using Npm'
-  shell: pwsh
-  run: |
-  pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-  npm install
-  npm run build --if-present
-  npm run test --if-present
-  popd
+    - name: 'Resolve Project Dependencies Using Npm'
+      shell: pwsh
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+        popd
 
-
-
-- name: 'Run Azure Functions Action'
-  uses: Azure/functions-action@v1
-  id: fa
-with:
-  app-name: '3d-web-api'
-  slot-name: 'production'
-  package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-  publish-profile: ${{ secrets.AzureAppService_PublishProfile_9991baf31a0a4b6ea79e0397c5731535 }}
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: '3d-web-api'
+        slot-name: 'production'
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9991baf31a0a4b6ea79e0397c5731535 }}
