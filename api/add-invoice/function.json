@@ -9,7 +9,7 @@
         "get",
         "post"
       ],
-      "route": "{ContainerID}/getCustomers"
+      "route": "{ContainerID}/addinvoice"
     },
     {
       "type": "http",
@@ -21,11 +21,20 @@
       "direction": "in",
       "name": "inputDocument",
       "databaseName": "3d-web-db",
-      "collectionName": "{ContainerID}",
+      "collectionName" : "{ContainerID}",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
       "partitionKey": "undefined",
-      "sqlQuery": "SELECT * FROM c where c.id = 'customers'"
+      "sqlQuery": "SELECT * FROM c where c.id = 'invoices'"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "outputDocument",
+      "databaseName": "3d-web-db",
+      "collectionName": "{ContainerID}",
+      "connectionStringSetting": "3dwebdb_DOCUMENTDB",
+      "partitionKey": "undefined"
     }
   ],
-  "scriptFile": "../dist/get-customers/index.js"
+  "scriptFile": "../dist/add-invoice/index.js"
 }
