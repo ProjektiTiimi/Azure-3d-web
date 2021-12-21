@@ -66,12 +66,15 @@ const Editcustomer = () => {
         })
     }
 
-    //https://3d-web-api.azurewebsites.net/api/delete-customer?
-    //http://localhost:7071/api/delete-customer?
+    //https://3d-web-api.azurewebsites.net/api/{ContainerID}deleteCustomer?
+    //http://localhost:7071/api/{ContainerID}/deleteCustomer?
     const deleteCustomer = (): void => {
-        fetch(`https://3d-web-api.azurewebsites.net/api/delete-customer?` + id, {
+        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?`, {
             method: 'DELETE',
-            headers: { 'Content-type': 'application/json' }
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({
+                customerID: id
+            })
         })
         .then(function(data){
             console.log("Request succeeded with response ", data)
