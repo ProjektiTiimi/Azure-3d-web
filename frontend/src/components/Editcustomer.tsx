@@ -73,7 +73,7 @@ const Editcustomer = () => {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
-                customerID: id
+                "_id": id
             })
         })
         .then(function(data){
