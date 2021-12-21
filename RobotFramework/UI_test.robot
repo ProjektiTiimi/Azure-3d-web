@@ -5,7 +5,7 @@ Suite Teardown      Close Browser
 
 ***Variables***
 
-${URL}      http://localhost:3000
+${URL}      https://wonderful-sea-0b9eeac03.azurestaticapps.net
 
 ${Browser}  Chrome
 
