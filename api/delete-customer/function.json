@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "delete"
-      ]
+      ],
+      "route": "{ContainerID}/deleteCustomer"
     },
     {
       "type": "http",
@@ -16,14 +17,24 @@
     },
     {
       "type": "cosmosDB",
+      "direction": "in",
+      "name": "inputDocument",
+      "databaseName": "3d-web-db",
+      "collectionName": "{ContainerID}",
+      "connectionStringSetting": "3dwebdb_DOCUMENTDB",
+      "partitionKey": "undefined",
+      "sqlQuery": "SELECT * FROM c where c.id = 'customers'"
+  },
+    {
+      "type": "cosmosDB",
       "direction": "out",
       "name": "outputDocument",
       "databaseName": "3d-web-db",
       "collectionName": "Billers",
-      "createIfNotExists": false,
+      "createIfNotExists": "true",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
-      "partitionKey": "undefined"
-    }
+      "partitionKey": "/id"
+  }
   ],
   "scriptFile": "../dist/delete-customer/index.js"
 }

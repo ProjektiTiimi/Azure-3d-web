@@ -52,12 +52,12 @@ const Addcustomer = () => {
 
         return true;
     };
-    //https://3d-web-api.azurewebsites.net/api/add-customer?
-    //http://localhost:7071/api/add-customer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/addcustomer?
+    //http://localhost:7071/api/Billers/addcustomer?
     const handleClick = (): void =>{
         const isValid = validate();
         if (isValid){
-            fetch('https://3d-web-api.azurewebsites.net/api/add-customer?', {
+            fetch('https://3d-web-api.azurewebsites.net/api/Billers/addcustomer?', {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json'},
                 body: JSON.stringify({

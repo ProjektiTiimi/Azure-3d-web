@@ -1,13 +1,13 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
+    context.log('AddCustomer function processed a request.');
 
     let idocument = context.bindings.inputDocument;
 
     let newcustomer = req.body;
 
-    newcustomer.id = Date.now();
+    newcustomer._id = Date.now().toString();
 
     idocument[0].customerlist.push(newcustomer);
 
