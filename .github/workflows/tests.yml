@@ -31,9 +31,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm start
-    - uses: joonvena/robotframework-docker-action@v0.1
-      env:
-        BROWSER: chrome
-        ROBOT_TESTS_DIR: ${{ github.workspace }}/RobotFramework
-    - run: npm --prefix ../RobotFramework run robot
+    - run: npm run build --if-present
+    - run: npm test
