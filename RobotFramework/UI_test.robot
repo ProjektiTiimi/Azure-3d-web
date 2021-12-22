@@ -31,35 +31,37 @@ ${EDIT_ADDNUM}      12345678
 ${EDIT_CITY}        EditKaupunki
 
 ***Test Cases***
-Register
-    Set Selenium Speed  0.1
+Open Browser
     Open Browser To Login Page
-    Register New User With Invalid Credentials
-    Register New User With Valid Credentials
+# Register
+#     Set Selenium Speed  0.1
+#     Open Browser To Login Page
+#     Register New User With Invalid Credentials
+#     Register New User With Valid Credentials
 
-Login
-    Login With Invalid Credentials
-    Login With Valid Credentials
+# Login
+#     Login With Invalid Credentials
+#     Login With Valid Credentials
 
-Add Customer
-    Navigate To Add Customer
-    Add Invalid Data For New Customer
-    Add Data For New Customer
-    Save New Customer
+# Add Customer
+#     Navigate To Add Customer
+#     Add Invalid Data For New Customer
+#     Add Data For New Customer
+#     Save New Customer
 
-Modify Customer
-    Navigate To Customerlist
-    Select Customer
-    Modify Customer
+# Modify Customer
+#     Navigate To Customerlist
+#     Select Customer
+#     Modify Customer
 
-Add Data For invoice
-    Fill First Form Invalid Data
-    Fill First Form Valid Data
-    Fill Second Form
+# Add Data For invoice
+#     Fill First Form Invalid Data
+#     Fill First Form Valid Data
+#     Fill Second Form
 
-Remove Test Data
-    Remove Test Customer
-    Remove Test User
+# Remove Test Data
+#     Remove Test Customer
+#     Remove Test User
 
 ***Keywords***
 
