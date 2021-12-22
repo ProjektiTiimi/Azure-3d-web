@@ -6,10 +6,9 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get",
-        "post"
+        "delete"
       ],
-      "route": "{ContainerID}/addCustomer"
+      "route": "{ContainerID}/deleteCustomer"
     },
     {
       "type": "http",
@@ -34,8 +33,8 @@
       "collectionName": "Billers",
       "createIfNotExists": "true",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
-      "partitionKey": "undefined"
+      "partitionKey": "/id"
   }
   ],
-  "scriptFile": "../dist/add-customer/index.js"
+  "scriptFile": "../dist/delete-customer/index.js"
 }

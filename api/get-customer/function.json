@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "get"
-      ]
+      ],
+      "route": "{ContainerID}/getCustomer"
     },
     {
       "type": "http",
@@ -16,12 +17,13 @@
     },
     {
       "type": "cosmosDB",
-      "direction": "out",
-      "name": "outputDocument",
+      "direction": "in",
+      "name": "inputDocument",
       "databaseName": "3d-web-db",
-      "collectionName": "Billers",
+      "collectionName": "{ContainerID}",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
-      "partitionKey": "undefined"
+      "partitionKey": "undefined",
+      "sqlQuery": "SELECT * FROM customerlist where customerlist.id = {id}"
     }
   ],
   "scriptFile": "../dist/get-customer/index.js"

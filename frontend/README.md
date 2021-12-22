@@ -25,3 +25,5 @@ npm install
 npm start
 ```
 Sovellus aukeaa uudessa välilehdessä oletusselaimellasi.
+
+## Test
