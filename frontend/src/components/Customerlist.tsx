@@ -25,7 +25,7 @@ function Customerlist() {
 
     const getData = async () => {
         try {
-            const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/getCustomers?`, {
+            const response = await fetch(`http://localhost:7071/api/Billers/getCustomers?`, {
                 method: 'GET',
                 headers: { 'Content-type': 'application/json'}
             });
