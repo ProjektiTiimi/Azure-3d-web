@@ -26,6 +26,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: joonvena/robotframework-docker-action@v0.1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
