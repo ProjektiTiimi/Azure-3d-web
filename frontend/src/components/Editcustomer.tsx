@@ -13,10 +13,13 @@ const Editcustomer = () => {
     //https://3d-web-api.azurewebsites.net/api/Billers/get-customer?
     const getData = async () => {
         console.log(id)
-        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/get-gustomer?` + id, {
+        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/get-gustomer?`, {
             method:'GET',
-            headers:{ 'Content-type': 'application/json' }
-                     });
+            headers:{ 'Content-type': 'application/json' },
+            body: JSON.stringify({
+                customerID: id
+            })
+        });
         const data = await response.json()
         console.log(data)
         setInput(data)
@@ -44,10 +47,11 @@ const Editcustomer = () => {
     //https://3d-web-api.azurewebsites.net/api/edit-customer?
     //http://localhost:7071/api/edit-customer?
     const editcustomer = (): void =>{
-        fetch(`https://3d-web-api.azurewebsites.net/api/edit-customer?` + id, {
+        fetch(`https://3d-web-api.azurewebsites.net/api/edit-customer?`, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
+                customerID: id,
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
                 Postitusosoite: input.Postitusosoite,
