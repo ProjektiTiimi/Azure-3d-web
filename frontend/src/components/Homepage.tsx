@@ -5,7 +5,7 @@ import {CurrentUser} from './User'
 const Homepage: React.FunctionComponent = () => {
     return(
         <div className='homepage'>
-            <h1>Tervetuloa{CurrentUser}</h1>
+            <h1>Tervetuloa laskut sovellukseen {CurrentUser}</h1>
             <h3>
             </h3>
         </div>
