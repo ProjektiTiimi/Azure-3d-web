@@ -10,14 +10,14 @@ const Editcustomer = () => {
     let currentUser = localStorage.getItem('currentUser');
 
     //http://localhost:7071/api/Billers/get-customer
-    //https://3d-web-api.azurewebsites.net/api/Billers/get-customer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/getcustomer?
     const getData = async () => {
         console.log(id)
-        const response = await fetch(`https://localhost:7071/api/Billers/get-gustomer?`, {
-            method:'GET',
+        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/getcustomer?`, {
+            method:'POST',
             headers:{ 'Content-type': 'application/json' },
             body: JSON.stringify({
-                customerID: id
+                "_id": id
             })
         });
         const data = await response.json()
@@ -44,10 +44,10 @@ const Editcustomer = () => {
         })
     }
 
-    //https://3d-web-api.azurewebsites.net/api/{ContainerID}/edit-customer?
-    //http://localhost:7071/api/{ContainerID}/edit-customer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/editcustomer?
+    //http://localhost:7071/api/Billers/edit-customer?
     const editcustomer = (): void =>{
-        fetch(`http://localhost:7071/api/Billers/edit-customer?`, {
+        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/editcustomer?`, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
@@ -70,10 +70,10 @@ const Editcustomer = () => {
         })
     }
 
-    //https://3d-web-api.azurewebsites.net/api/{ContainerID}/deleteCustomer?
-    //http://localhost:7071/api/{ContainerID}/deleteCustomer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?
+    //http://localhost:7071/api/Billers/deleteCustomer?
     const deleteCustomer = (): void => {
-        fetch(`https://localhost:7071/api/Billers/deleteCustomer?`, {
+        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?`, {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({

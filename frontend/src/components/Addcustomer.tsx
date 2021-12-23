@@ -57,7 +57,7 @@ const Addcustomer = () => {
     const handleClick = (): void =>{
         const isValid = validate();
         if (isValid){
-            fetch('http://localhost:7071/api/Billers/addcustomer?', {
+            fetch('https://3d-web-api.azurewebsites.net/api/Billers/addcustomer?', {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json'},
                 body: JSON.stringify({
