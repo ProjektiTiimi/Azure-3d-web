@@ -6,6 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
+        "get",
         "delete"
       ],
       "route": "{ContainerID}/deleteCustomer"
@@ -33,7 +34,7 @@
       "collectionName": "Billers",
       "createIfNotExists": "true",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
-      "partitionKey": "/id"
+      "partitionKey": "undefined"
   }
   ],
   "scriptFile": "../dist/delete-customer/index.js"

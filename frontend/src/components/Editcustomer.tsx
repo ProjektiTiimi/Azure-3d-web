@@ -10,13 +10,16 @@ const Editcustomer = () => {
     let currentUser = localStorage.getItem('currentUser');
 
     //http://localhost:7071/api/Billers/get-customer
-    //https://3d-web-api.azurewebsites.net/api/Billers/get-customer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/getcustomer?
     const getData = async () => {
         console.log(id)
-        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/get-gustomer?` + id, {
-            method:'GET',
-            headers:{ 'Content-type': 'application/json' }
-                     });
+        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/getcustomer?`, {
+            method:'POST',
+            headers:{ 'Content-type': 'application/json' },
+            body: JSON.stringify({
+                "_id": id
+            })
+        });
         const data = await response.json()
         console.log(data)
         setInput(data)
@@ -41,13 +44,14 @@ const Editcustomer = () => {
         })
     }
 
-    //https://3d-web-api.azurewebsites.net/api/edit-customer?
-    //http://localhost:7071/api/edit-customer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/editcustomer?
+    //http://localhost:7071/api/Billers/edit-customer?
     const editcustomer = (): void =>{
-        fetch(`https://3d-web-api.azurewebsites.net/api/edit-customer?` + id, {
+        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/editcustomer?`, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
+                "_id": id,
                 YTunnus: input.YTunnus,
                 asiakkaanNimi: input.asiakkaanNimi,
                 Postitusosoite: input.Postitusosoite,
@@ -66,8 +70,8 @@ const Editcustomer = () => {
         })
     }
 
-    //https://3d-web-api.azurewebsites.net/api/{ContainerID}deleteCustomer?
-    //http://localhost:7071/api/{ContainerID}/deleteCustomer?
+    //https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?
+    //http://localhost:7071/api/Billers/deleteCustomer?
     const deleteCustomer = (): void => {
         fetch(`https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?`, {
             method: 'DELETE',

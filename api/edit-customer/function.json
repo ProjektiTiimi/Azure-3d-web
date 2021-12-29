@@ -6,6 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
+        "get",
         "patch"
       ],
       "route": "{ContainerID}/editCustomer"
@@ -17,14 +18,23 @@
     },
     {
       "type": "cosmosDB",
+      "direction": "in",
+      "name": "inputDocument",
+      "databaseName": "3d-web-db",
+      "collectionName": "{ContainerID}",
+      "connectionStringSetting": "3dwebdb_DOCUMENTDB",
+      "partitionKey": "undefined",
+      "sqlQuery": "SELECT * FROM c where c.id = 'customers'"
+  },
+    {
+      "type": "cosmosDB",
       "direction": "out",
       "name": "outputDocument",
       "databaseName": "3d-web-db",
-      "collectionName": "{ContainerID}",
-      "createIfNotExists": true,
+      "collectionName": "Billers",
+      "createIfNotExists": "true",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
-      "partitionKey": "undefined",
-      "sqlQuery": "UPDATE customerlist SET Ytunnus={Ytunnus}, asiakkaanNimi={asiakkaanNmi}, Postiosoite={Postiosoite}, Postinumero={Postinumero}, Toimipaikka={Toimipaikka} WHERE customerlist.id={id}"
+      "partitionKey": "undefined"
     }
   ],
   "scriptFile": "../dist/edit-customer/index.js"

@@ -6,7 +6,8 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
+        "get",
+        "post"
       ],
       "route": "{ContainerID}/getCustomer"
     },
@@ -23,7 +24,7 @@
       "collectionName": "{ContainerID}",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
       "partitionKey": "undefined",
-      "sqlQuery": "SELECT * FROM customerlist where customerlist.id = {id}"
+      "sqlQuery": "SELECT * FROM c where c.id = 'customers'"
     }
   ],
   "scriptFile": "../dist/get-customer/index.js"
