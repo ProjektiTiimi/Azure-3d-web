@@ -8,7 +8,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     } catch (error) {
         context.log("Stringifying customerlist failed, error: " + error);
     }
-    
+    context.log("headers: " + JSON.stringify(req.headers));
+    context.log("context: " + JSON.stringify(context));
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: tuloste
