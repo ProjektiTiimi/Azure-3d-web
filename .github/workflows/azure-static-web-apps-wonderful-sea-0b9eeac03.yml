@@ -41,7 +41,6 @@ jobs:
         uses: joonvena/robotframework-docker-action@v1.0
         env:
               BROWSER: chrome
-              ROBOT_TESTS_DIR: ${{ github.workspace }}/RobotFramework
               PR_NUMBER: ${{ github.run_number }}
         with:
             robot_options: --variable URL:"https://wonderful-sea-0b9eeac03-$PR_NUMBER.westeurope.azurestaticapps.net"
