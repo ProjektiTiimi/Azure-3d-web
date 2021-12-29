@@ -41,7 +41,7 @@ jobs:
         uses: joonvena/robotframework-docker-action@v1.0
         with:
             browser: 'chrome'
-            robot_options: --variable URL:"https://wonderful-sea-0b9eeac03-${{ github.event.number }}.westeurope.azurestaticapps.net"
+            robot_options: --variable "URL:https://wonderful-sea-0b9eeac03-${{ github.event.number }}.westeurope.azurestaticapps.net"
 
   build_and_deploy_job:
     if: github.event_name == 'push'
