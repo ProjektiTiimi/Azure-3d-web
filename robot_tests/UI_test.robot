@@ -5,8 +5,6 @@ Suite Teardown      Close Browser
 
 ***Variables***
 
-${URL}      http://localhost:3000
-
 ${Browser}  Chrome
 
 #Variables for test user
