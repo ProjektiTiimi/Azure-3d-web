@@ -15,7 +15,7 @@ on:
 
 jobs:
   build_and_test_job:
-    if: github.event_name == (github.event_name == 'pull_request' && github.event.action != 'closed')
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     name: Build and Test Job
     env:
