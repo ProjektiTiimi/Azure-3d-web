@@ -37,6 +37,14 @@ jobs:
           api_location: "api" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+      - name: Robot tests
+        uses: joonvena/robotframework-docker-action@v1.0
+        env:
+              BROWSER: chrome
+              ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
+              PR_NUMBER: ${{ github.run_number }}
+        with:
+            robot_options: --variable URL:"https://wonderful-sea-0b9eeac03-$PR_NUMBER.westeurope.azurestaticapps.net"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
