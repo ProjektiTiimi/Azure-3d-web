@@ -1,0 +1,12 @@
+{
+  “auth”: {
+       “identityProviders”: {
+         “azureActiveDirectory”: {
+           “registration”: {
+             “openIdIssuer”: “https://login.microsoftonline.com/47531f5a-a4a7-4c6d-8cb6-9e3ef0dc89d4“,
+             “clientIdSettingName”: “APPClientID”,
+             “clientSecretSettingName”: “3d-web-app-salaisuus”
+           },”userDetailsClaim”: “http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name”
+                 }
+      }
+}
