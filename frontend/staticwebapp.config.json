@@ -1,9 +1,13 @@
 {
-	
-	  "navigationFallback": {
-	    "rewrite": "/index.html",
-	    "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
-	  },
+	"routes": [{
+			"route": "/login",
+			"rewrite": "/.auth/login/aad"
+		},
+		{
+			"route": "/*",
+			"allowedRoles": ["authenticated"]
+		}
+	],
 	"auth": {
 		"identityProviders": {
 			"azureActiveDirectory": {
@@ -13,6 +17,12 @@
 					"clientSecretSettingName": "AADSecret"
 				}
 			}
+		}
+	},
+	"responseOverrides": {
+		"401": {
+			"redirect": "/login",
+			"statusCode": 302
 		}
 	}
 }
