@@ -71,6 +71,7 @@ const LineInfo = () => {
                             className="lineInfo-input"
                             onChange={e => handleInputChange(e, i)}
                             name="selite"
+                            key={i}
                             value={x.selite}
                         />
                         <input 
@@ -79,6 +80,7 @@ const LineInfo = () => {
                             className="lineInfo-price"
                             onChange={e => handleInputChange(e, i)}
                             name="kpl"
+                            key={i}
                             value={x.kpl}
                         /><label className="lineInfo-label">Kpl</label>
                         <input 
@@ -87,11 +89,13 @@ const LineInfo = () => {
                             className="lineInfo-price"
                             onChange={e => handleInputChange(e, i)}
                             name="hinta"
+                            key={i}
                             value={x.hinta}
                         /><label className="lineInfo-label">Hinta</label>
                         <select 
                             className="Invoice-select"
                             name="alv"
+                            key={i}
                             onChange={e => handleInputChange(e, i)}>
                             <option value="24">24%</option>
                             <option value="14">14%</option>

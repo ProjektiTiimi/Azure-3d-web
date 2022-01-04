@@ -99,7 +99,7 @@ const InvoicePDF = () => {
                                ', Kpl: ' + item.kpl +
                                ', Alv%: ' + item.alv +
                                ', Hinta(ilman alvia): ' + item.price +
-                               ', Hinta: ' + item.total;
+                               ', Hinta: ' + item.total.toFixed(2);
             return info});
         let riviTiedot: string = laskunTiedot.toString();
 
@@ -167,7 +167,7 @@ const InvoicePDF = () => {
                                ', Kpl: ' + item.kpl +
                                ', Alv%: ' + item.alv +
                                ', Hinta(ilman alvia): ' + item.price +
-                               ', Hinta: ' + item.total;
+                               ', Hinta: ' + item.total.toFixed(2);
             return info});
         let riviTiedot: string = laskunTiedot.toString();
 
@@ -277,15 +277,15 @@ const InvoicePDF = () => {
                         <th className="lineInfo-c4">ALV %</th>
                         <th className="lineInfo-c5">Yhteensä €</th>
 
-                    {defaultLineInfo.map((item) => {
+                    {defaultLineInfo.map((item, index) => {
                         console.log("invoice: " + JSON.stringify(defaultLineInfo))
                         return(
                             <tr>
-                                <td className="lineInfo-c1">{item.selite}</td>
-                                <td className="lineInfo-c2">{item.kpl}</td>
-                                <td className="lineInfo-c3">{item.price}</td>
-                                <td className="lineInfo-c4">{item.alv}</td>
-                                <td className="lineInfo-c5">{item.total}</td>
+                                <td className="lineInfo-c1" key={index}>{item.selite}</td>
+                                <td className="lineInfo-c2" key={index}>{item.kpl}</td>
+                                <td className="lineInfo-c3" key={index}>{item.price}</td>
+                                <td className="lineInfo-c4" key={index}>{item.alv}</td>
+                                <td className="lineInfo-c5" key={index}>{item.total.toFixed(2)}</td>
                             </tr>
                         )
                     })}
