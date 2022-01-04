@@ -25,10 +25,17 @@ function Customerlist() {
 
     const getData = async () => {
         try {
-            const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/getCustomers?`, {
+            const user = await fetch('/.auth/me', {
+                method: 'GET',
+                headers: { 'Content-type': 'application/json' }
+            });
+            const userInfo = await user.json();
+            console.log("UserInfo is: " + userInfo.clientPrincipal.userId);
+            let id = userInfo.clientPrincipal.userId;
+            const response = await fetch(`/api/${id}/getCustomers?`, {
                 method: 'GET',
                 headers: { 'Content-type': 'application/json'}
-            });
+            });            
             const data = await response.json();
             if(response.ok){
                 setTotal(data.length);
