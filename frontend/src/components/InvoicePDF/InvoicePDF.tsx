@@ -93,6 +93,20 @@ const InvoicePDF = () => {
         }
     })
 
+    const getAccessToken = async () => {
+        try {
+            const resp = await fetch('https://login.microsoftonline.com/47531f5a-a4a7-4c6d-8cb6-9e3ef0dc89d4/oauth2/token', {
+                method: 'POST',
+                headers: {
+                'Content-type': 'application/json'}
+            })
+            const data = await resp.json();
+            console.log("getaccesstoken data: " + data);
+        } catch(error){
+            console.log("getAccessToken error " + error);
+        }
+    }
+
     const ClickPDF = async () => {
         let laskunTiedot = defaultLineInfo.map((item) => {
             let info: string = 'Selite: ' + item.selite + 
@@ -412,6 +426,7 @@ const InvoicePDF = () => {
             <p className={boolean ? "responseMessage":"errorResponseMessage"}>
                     { boolean ? message : message}
             </p>
+            <button onClick={getAccessToken}>Get AccessToken</button>
         </div>
             
         </div>
