@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css'
-import {CurrentUser} from './User'
+
 
 const Homepage: React.FunctionComponent = () => {
     const [message, setMessage] = useState('');
@@ -39,6 +39,7 @@ const Homepage: React.FunctionComponent = () => {
                     setContainer(id);
                   }
               })
+              console.log(billerInfo);
 
         } catch (error) {
             console.log("getUserData failed, error: " +error);
@@ -64,7 +65,7 @@ const Homepage: React.FunctionComponent = () => {
 
     return(
         <div className='homepage'>
-            <h1>Tervetuloa laskut sovellukseen {CurrentUser}</h1>
+            <h1>Tervetuloa laskut sovellukseen</h1>
             <h3>
                 {message}
             </h3>

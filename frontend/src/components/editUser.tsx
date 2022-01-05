@@ -1,44 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import Customer from '../models/customer';
+import User from '../models/user';
 
-const UserLogin = () => {
-  const [input, setInput] = useState({
+const EditUser = () => {
+
+  const [input, setInput] = useState<User>({
     YTunnus: "",
-    nimi: "",
+    username: "",
     email: "",
     iban: ""
-})
-
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  setInput({
-      ...input,
-      [e.target.name]: e.target.value
   })
-}
+
+  
+  React.useEffect(()=> {
+    getUser();
+  }, []);
 
 
-  const getData = async () => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setInput({
+        ...input,
+        [e.target.name]: e.target.value
+    })
+  }
+
+  const getUser = async () => {
     try {
-        const user = await fetch('/.auth/me', {
-            method: 'GET',
-            headers: { 'Content-type': 'application/json' }
-        });
-        const userInfo = await user.json();
-        console.log("UserInfo is: " + userInfo.clientPrincipal.userId);
-        let id = userInfo.clientPrincipal.userId;
-        localStorage.setItem('userID', id);
-        //console.log("trying to send data: " + input.YTunnus + " " + input.nimi);
+      let id = localStorage.getItem('userID');
+      const userdata = await fetch(`/api/${id}/getBiller?`,{
+        method : 'GET',
+        headers: { 'Content-type': 'application/json'},
+      });
+      const data = await userdata.json()
+      console.log(data)
+      setInput(data)
+    } catch (error) {
+      console.log("getUser failed, error: " + error);
+    }
+  }
+
+  const editUser = async () => {
+    try {
+        let id = localStorage.getItem('userID');
         const userdata = await fetch(`/api/${id}/postUser?`,{
           method : 'POST',
           headers: { 'Content-type': 'application/json'},
           body : JSON.stringify({
             YTunnus: input.YTunnus,
-            username: input.nimi,
+            username: input.username,
             email: input.email,
             iban: input.iban
         })
         });
         console.log(userdata);
+        document.getElementById("savedText")!.hidden = false
     } catch (error) {
         console.log("GetData failed, error:" + error);
     }
@@ -59,8 +73,8 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
             type="text"
             onChange={handleChange}
             className="AddCustomer-input"
-            name="nimi"
-            value={input.nimi}
+            name="username"
+            value={input.username}
           />
           <h3>Sähköposti</h3>
           <input 
@@ -78,9 +92,10 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
             name="iban"
             value={input.iban}
           />
-          <button onClick={getData}>Tallenna</button>
+          <button onClick={editUser}>Tallenna</button>
+          <h4 id="savedText" hidden>Tallennettu</h4>
         </div>
     )
 }
 
-export default UserLogin
+export default EditUser
