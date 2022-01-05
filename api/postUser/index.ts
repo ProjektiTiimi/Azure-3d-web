@@ -5,9 +5,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     let tuloste = "";
     let billerdata = req.body;
     billerdata.id = "biller";
-    let customerlist = {'id' : 'customers'};
-    let invoices = {'id': 'invoices'};
-    context.bindings.outputDocument = [billerdata, customerlist, invoices];
+    context.bindings.outputDocument = billerdata;
     
     try {
         context.log("input document data:" + JSON.stringify(context.bindings.inputDocument));

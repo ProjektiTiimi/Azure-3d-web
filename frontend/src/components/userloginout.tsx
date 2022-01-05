@@ -42,8 +42,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     } catch (error) {
         console.log("GetData failed, error:" + error);
     }
-
-
 }
     return(
       <div className="AddCustomer">
