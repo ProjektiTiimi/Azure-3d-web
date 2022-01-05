@@ -18,7 +18,6 @@ const InvoicePDF = () => {
     const [email, setEmail] = useState('');
     const [ytunnus, setYtunnus] = useState('');
     const [nimi, setNimi] = useState('');
-    const [token, setToken] = useState('');
     const [boolean, setBoolean] = useState<boolean>();
     const [message, setMessage] = useState('');
     
@@ -30,7 +29,6 @@ const InvoicePDF = () => {
             setEmail(obj.email);
             setYtunnus(obj.ytunnus);
             setNimi(obj.username);
-            setToken(obj.token);
         }
     }, []);
 
@@ -93,20 +91,6 @@ const InvoicePDF = () => {
         }
     })
 
-    const getAccessToken = async () => {
-        try {
-            const resp = await fetch('https://login.microsoftonline.com/47531f5a-a4a7-4c6d-8cb6-9e3ef0dc89d4/oauth2/token', {
-                method: 'POST',
-                headers: {
-                'Content-type': 'application/json'}
-            })
-            const data = await resp.json();
-            console.log("getaccesstoken data: " + data);
-        } catch(error){
-            console.log("getAccessToken error " + error);
-        }
-    }
-
     const ClickPDF = async () => {
         let laskunTiedot = defaultLineInfo.map((item) => {
             let info: string = 'Selite: ' + item.selite + 
@@ -120,10 +104,11 @@ const InvoicePDF = () => {
         //https://3d-web-api.azurewebsites.net/api/Billers/getCustomers?
         //http://localhost:7071/api/Billers/addinvoice
 
-        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/addinvoice?`, {
+        let userID = localStorage.getItem('userID');
+
+        fetch(`/api/${userID}/addinvoice?`, {
             method: 'POST',
-            headers: { 'Content-type': 'application/json',
-            'x-access-token': token
+            headers: { 'Content-type': 'application/json'
             },
             body: JSON.stringify({
                 laskuttaja:{
@@ -174,7 +159,7 @@ const InvoicePDF = () => {
         pdf.save(`${defaultInvoice.LaskunNumero}.pdf`);
     };
 
-    const savePDF = () => {
+    /*const savePDF = () => {
 
         let laskunTiedot = defaultLineInfo.map((item) => {
             let info: string = 'Selite: ' + item.selite + 
@@ -222,7 +207,7 @@ const InvoicePDF = () => {
             setMessage('Laskun tallentaminen epäonnistui');
         })
 
-    }
+    }*/
     
     return(
         <div>
@@ -426,7 +411,6 @@ const InvoicePDF = () => {
             <p className={boolean ? "responseMessage":"errorResponseMessage"}>
                     { boolean ? message : message}
             </p>
-            <button onClick={getAccessToken}>Get AccessToken</button>
         </div>
             
         </div>

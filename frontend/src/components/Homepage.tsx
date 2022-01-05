@@ -1,3 +1,4 @@
+import { response } from 'express';
 import React, { useState, useEffect } from 'react';
 import '../App.css'
 
@@ -18,6 +19,7 @@ const Homepage: React.FunctionComponent = () => {
             localStorage.setItem('userID', id);
             setMessage("Tervetuloa, " + userDetails);
             getUserData(id);
+
         } catch (error) {
             console.log("checkLogin failed, error:" + error);
         }
@@ -29,20 +31,14 @@ const Homepage: React.FunctionComponent = () => {
                 method : 'GET',
                 headers: { 'Content-type': 'application/json'}
               })
-              .then(function(response){
-                  if(response.ok){
-                    const log = response.json();
-                    console.log(log);
-                  }
-                  else if(response.status == 500){
-                    console.log("Setting container for new user");
-                    setContainer(id);
-                  }
-              })
-              console.log(billerInfo);
-
+              let resp = await billerInfo.json();
+              let currentUser = {'username' : resp.username, 'email' : resp.email, 'YTunnus' : resp.YTunnus, 'iban' : resp.iban}
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+              console.log("response: " + resp.username);
         } catch (error) {
             console.log("getUserData failed, error: " +error);
+            console.log("Setting container for new user");
+            setContainer(id);
         }
     }
 
