@@ -27,5 +27,5 @@
       "partitionKey": "/pk"
     }
   ],
-  "scriptFile": "../dist/userData/index.js"
+  "scriptFile": "../dist/postUser/index.js"
 }

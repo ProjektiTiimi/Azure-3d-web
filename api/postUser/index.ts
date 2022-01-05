@@ -1,11 +1,13 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('userData function processed a request.');
+    context.log('Post userData function processed a request.');
     let tuloste = "";
     let billerdata = req.body;
     billerdata.id = "biller";
-    context.bindings.outputDocument = billerdata;
+    let customerlist = {'id' : 'customers'};
+    let invoices = {'id': 'invoices'};
+    context.bindings.outputDocument = [billerdata, customerlist, invoices];
     
     try {
         context.log("input document data:" + JSON.stringify(context.bindings.inputDocument));

@@ -27,7 +27,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         console.log("UserInfo is: " + userInfo.clientPrincipal.userId);
         let id = userInfo.clientPrincipal.userId;
         localStorage.setItem('userID', id);
-        console.log("trying to send data: " + input.YTunnus + " " + input.nimi);
+        //console.log("trying to send data: " + input.YTunnus + " " + input.nimi);
         const userdata = await fetch(`/api/${id}/postUser?`,{
           method : 'POST',
           headers: { 'Content-type': 'application/json'},
