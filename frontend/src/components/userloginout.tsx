@@ -1,88 +1,88 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { BehaviorSubject } from 'rxjs';
-import configData from "../config/configData.json";
+import React, { useState, useEffect } from 'react';
+import Customer from '../models/customer';
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser') || '{}'));
-type userState = {
-  username: string,
-  password: string
+const UserLogin = () => {
+  const [input, setInput] = useState({
+    YTunnus: "",
+    nimi: "",
+    email: "",
+    iban: ""
+})
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  setInput({
+      ...input,
+      [e.target.name]: e.target.value
+  })
 }
-export default class UserLogin extends Component<any, any> {
-    constructor(props: string) {
-      super(props);
-      this.state = {
-        username : '',
-        password : '',
-        currentUser : null
-      }
-      this.updateUsername = this.updateUsername.bind(this);
-      this.updatePassword = this.updatePassword.bind(this);
-      this.updateToken = this.updateToken.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-  
-    }
-    // Login function
-    handleSubmit(){
-      const reqOptions = {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify ({
-          username : this.state.username, 
-          password : this.state.password})
-      };
-      return fetch(`${configData.API_URL}:${configData.API_PORT}/user/login`, reqOptions)
-        .then(response => response.json())
-        .then(user=>{
-         localStorage.setItem('currentUser', JSON.stringify(user));
-         currentUserSubject.next(user);
-          return user;
+
+
+  const getData = async () => {
+    try {
+        const user = await fetch('/.auth/me', {
+            method: 'GET',
+            headers: { 'Content-type': 'application/json' }
         });
-  
+        const userInfo = await user.json();
+        console.log("UserInfo is: " + userInfo.clientPrincipal.userId);
+        let id = userInfo.clientPrincipal.userId;
+        localStorage.setItem('userID', id);
+        console.log("trying to send data: " + input.YTunnus + " " + input.nimi);
+        const userdata = await fetch(`/api/${id}/postUser?`,{
+          method : 'POST',
+          headers: { 'Content-type': 'application/json'},
+          body : JSON.stringify({
+            YTunnus: input.YTunnus,
+            username: input.nimi,
+            email: input.email,
+            iban: input.iban
+        })
+        });
+        console.log(userdata);
+    } catch (error) {
+        console.log("GetData failed, error:" + error);
     }
-    // Logout function
-    logOut(){
-      localStorage.removeItem('currentUser');
-      currentUserSubject.next(null);
-    }
-  
-    currentUserValue(){
-      return currentUserSubject.value;
-    }
-  
-    updatePassword(event: any) {
-      this.setState({password : event.target.value});
-  
-    }
-  
-    updateUsername(event: any) {
-      this.setState({ username : event.target.value });
-  
-    }
-  
-    updateToken(event: any) {
-      this.setState({token : event.target.value});
-    }
-    
-  
-  
-    render(){
-      return(
-        <div className="AddCustomer">
-        <h1>Kirjaudu</h1>
-        Käyttäjätunnus: <input type="text" onChange={this.updateUsername} className="AddCustomer-input"></input>
-        Salasana: <input type="password" onChange={this.updatePassword} className="AddCustomer-input"></input>
-        <input type="submit" onClick={this.handleSubmit} className="AddCustomer-btn"></input>
-      
-        <Link to="/register" className="AddCustomer-btn">
-          Rekisteröidy
-        </Link>  
-        
-        <button onClick={this.logOut} className="AddCustomer-btn" >Kirjaudu ulos</button>
+
+
+}
+    return(
+      <div className="AddCustomer">
+          <h1>Laskuttajan tiedot</h1>
+          <h3>Y-tunnus</h3>
+          <input 
+            type="text"
+            onChange={handleChange}
+            className="AddCustomer-input"
+            name="YTunnus"
+            value={input.YTunnus}
+          />
+          <h3>Nimi</h3>
+          <input 
+            type="text"
+            onChange={handleChange}
+            className="AddCustomer-input"
+            name="nimi"
+            value={input.nimi}
+          />
+          <h3>Sähköposti</h3>
+          <input 
+            type="text"
+            onChange={handleChange}
+            className="AddCustomer-input"
+            name="email"
+            value={input.email}
+          />
+          <h3>Tilinumero</h3>
+          <input 
+            type="text"
+            onChange={handleChange}
+            className="AddCustomer-input"
+            name="iban"
+            value={input.iban}
+          />
+          <button onClick={getData}>Tallenna</button>
         </div>
-      );
-    }
-  }
+    )
+}
+
+export default UserLogin
