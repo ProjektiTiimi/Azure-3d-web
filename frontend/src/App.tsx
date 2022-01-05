@@ -17,7 +17,7 @@ import Navbar from './components/Navbar/Navbar';
 import TestiContext from './components/customerContext';
 import invoiceContext from './components/invoiceContext';
 import lineInfoContext from './components/LineInfoContext';
-import User from './components/User';
+import editUser from './components/editUser';
 import RegisterUser from './components/userregister';
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
             <invoiceContext.Provider value={invoiceInfo}>
             <lineInfoContext.Provider value={lineInfo}>
             <Route path="/invoice" component={Invoice} />
-            <Route path="/userloginout" component={User} />
+            <Route path="/user" component={editUser} />
             <Route path="/register" component={RegisterUser} />
             </lineInfoContext.Provider>
             </invoiceContext.Provider>
