@@ -31,10 +31,9 @@
       "direction": "out",
       "name": "outputDocument",
       "databaseName": "3d-web-db",
-      "collectionName": "Billers",
-      "createIfNotExists": "true",
+      "collectionName": "{ContainerID}",
       "connectionStringSetting": "3dwebdb_DOCUMENTDB",
-      "partitionKey": "undefined"
+      "partitionKey": "/pk"
   }
   ],
   "scriptFile": "../dist/delete-customer/index.js"
