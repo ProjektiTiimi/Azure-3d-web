@@ -57,7 +57,8 @@ const Addcustomer = () => {
     const handleClick = (): void =>{
         const isValid = validate();
         if (isValid){
-            fetch('/api/Billers2/addCustomer?', {
+            let id = localStorage.getItem("userID");
+            fetch(`/api/${id}/addCustomer?`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json'},
                 body: JSON.stringify({

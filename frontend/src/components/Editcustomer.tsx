@@ -13,7 +13,8 @@ const Editcustomer = () => {
     //https://3d-web-api.azurewebsites.net/api/Billers/getcustomer?
     const getData = async () => {
         console.log(id)
-        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/Billers/getcustomer?`, {
+        let userID = localStorage.getItem("userID");
+        const response = await fetch(`https://3d-web-api.azurewebsites.net/api/${userID}/getcustomer?`, {
             method:'POST',
             headers:{ 'Content-type': 'application/json' },
             body: JSON.stringify({
@@ -47,7 +48,8 @@ const Editcustomer = () => {
     //https://3d-web-api.azurewebsites.net/api/Billers/editcustomer?
     //http://localhost:7071/api/Billers/edit-customer?
     const editcustomer = (): void =>{
-        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/editcustomer?`, {
+        let userID = localStorage.getItem("userID");
+        fetch(`https://3d-web-api.azurewebsites.net/api/${userID}/editcustomer?`, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
@@ -73,7 +75,8 @@ const Editcustomer = () => {
     //https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?
     //http://localhost:7071/api/Billers/deleteCustomer?
     const deleteCustomer = (): void => {
-        fetch(`https://3d-web-api.azurewebsites.net/api/Billers/deleteCustomer?`, {
+        let userID = localStorage.getItem("userID");
+        fetch(`https://3d-web-api.azurewebsites.net/api/${userID}/deleteCustomer?`, {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
