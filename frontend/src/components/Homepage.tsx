@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { async } from 'rxjs';
+import React, { useState, useEffect } from 'react';
 import '../App.css'
 import {CurrentUser} from './User'
 
 const Homepage: React.FunctionComponent = () => {
+    const [message, setMessage] = useState('');
+
     const checkLogin = async () => {
         try {
             const user = await fetch('/.auth/me', {
@@ -13,7 +14,9 @@ const Homepage: React.FunctionComponent = () => {
             const userInfo = await user.json();
             console.log("UserInfo is: " + userInfo.clientPrincipal.userId);
             let id = userInfo.clientPrincipal.userId;
+            let userDetails = userInfo.clientPrincipal.userDetails;
             localStorage.setItem('userID', id);
+            setMessage("Tervetuloa, " + userDetails);
             getUserData(id);
         } catch (error) {
             console.log("checkLogin failed, error:" + error);
@@ -63,6 +66,7 @@ const Homepage: React.FunctionComponent = () => {
         <div className='homepage'>
             <h1>Tervetuloa laskut sovellukseen {CurrentUser}</h1>
             <h3>
+                {message}
             </h3>
             <a href="/.auth/login/aad">Login</a>
         </div>
