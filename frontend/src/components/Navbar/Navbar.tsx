@@ -1,25 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { LogOutButton } from '../LogOutButton';
+import { LogInButton } from '../LogInButton';
 import './Navbar.css';
 
 
 function Navbar() {
     const [click, setClick] = useState(false);
-    const [state,setState] = useState(true);
+    const [logged,setLogged] = useState<boolean>(false);
+
+    const resetLocalStorage = () =>{
+        localStorage.clear();
+    };
+
+    useEffect(() => {
+        let id = localStorage.getItem('userID');
+        handleLogged();
+    },[]);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+    const handleLogged = ( () => {
+        let id = localStorage.getItem('userID');
+        if (id === null || id === undefined)
+        {
+            setLogged(false);
+        }
+        else if (id !== null || id !== undefined)
+        {
+            setLogged(true);
+        }
+        
+    });
 
-    let element = state ?   <a href="/.auth/login/aad" className="nav-links-mobile">
+    let element = logged ?  <a href="/.auth/logout" className="nav-links-mobile" onClick={() => {handleLogged(); resetLocalStorage()}}>
+                                <button className='btn' onClick={closeMobileMenu} />
+                                Log Out
+                                <i className="fas fa-sign-out-alt"/>
+                            </a> :
+                            <a href="/.auth/login/aad" className="nav-links-mobile" onClick={() => handleLogged()}>
                                 <button className='btn' onClick={closeMobileMenu} />                              
                                 Log In
                                 <i className="fas fa-sign-in-alt"/>
-                            </a> :
-                            <a href="/.auth/logout" className="nav-links-mobile">
-                            <button className='btn' onClick={closeMobileMenu} />
-                            Log Out
-                            <i className="fas fa-sign-out-alt"/>
                             </a>;
 
     return (
@@ -48,7 +70,7 @@ function Navbar() {
                         </div>
                     </li>
                 </ul>
-                <LogOutButton />
+                {logged ? <LogOutButton /> : <LogInButton /> }
             </nav>
 
 
