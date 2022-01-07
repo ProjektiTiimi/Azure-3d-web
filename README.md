@@ -25,19 +25,22 @@ git clone <projektin osoite>
 ```
 cd frontend
 ```
-3. Asenna riippuvuudet komennolla:
+3. Asenna riippuvuudet ja käynnistä paikallinen dev-serveri komennoilla:
 ```
 npm i
-```
-4. Käynnistä paikallinen dev-serveri (edelleen frontend kansion sisällä)
-```
 npm start
 ```
-5. Käynnistä swa emulaattori
+4. Siirry api-kansioon ja aja komennot:
 ```
-swa start http://localhost:3000
+npm i
+npm run build
 ```
-Tällä komennolla
+5. Siirry pääkansioon ja käynnistä swa emulaattori
+```
+cd ..
+swa start http://localhost:3000 --api-location ./api
+```
+Tällä komennolla swa emulaattori käynnistää react appin localhost:4280 portissa ja apin localhost:7071 portissa.
 
 ## Github Actions
 
@@ -46,8 +49,12 @@ Github Actions on jatkuvan kehityksen ja jatkuvan toimituksen (CI/CD) alusta, mi
 Tässä projektissa on määritelty workflow tiedostot, mitkä seuraavat frontend- ja api-kansioiden muutoksia main-haarassa. Lisäksi on määritelty workflow tiedosto dev-haaran muutoksille, missä projektille ajetaan yksikkötestit.
 
 1. Tehdään koodimuutoksia paikallisesti omassa haarassa ja pusketaan githubiin
-2. Avataan pull request, jossa verrataan uutta haaraa dev-haaraan, jolloin yksikkötestit lähtee ajoon
+2. Avataan pull request, jossa verrataan uutta haaraa dev-haaraan, jolloin yksikkötestit lähtevät ajoon
 3. Tehdään merge dev-haaraan
 4. Avataan pull request, jossa verrataan dev-haaraa mainiin
 5. Workflow tiedoston build and test job lähtee käyntiin, missä sovellus buildataan ja deployataan stage sitelle, minkä jälkeen ajetaan robottitestit.
 6. Tehdään merge main-haaraan, jolloin workflow tiedoston build and deploy job lähtee käyntiin, missä sovellus deployataan tuotantoon
+
+### Github Actions avainsanat
+
+Workflow tiedoston rakenne ja toiminnot määritellään erilaisten avainsanojen avulla. 
