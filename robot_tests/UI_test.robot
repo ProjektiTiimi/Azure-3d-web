@@ -5,6 +5,7 @@ Suite Teardown      Close Browser
 
 ***Variables***
 
+${URL}      http://localhost:3000
 ${Browser}  Chrome
 
 #Variables for test user
@@ -30,7 +31,7 @@ ${EDIT_CITY}        EditKaupunki
 
 ***Test Cases***
 Open Browser
-    Open Browser To Login Page
+    Open Browser To Home Page
 # Register
 #     Set Selenium Speed  0.1
 #     Open Browser To Login Page
@@ -63,12 +64,11 @@ Open Browser
 
 ***Keywords***
 
-Open Browser To Login Page
+Open Browser To Home Page
     Open Browser    ${URL}  ${Browser}  
     #options=add_argument("--ignore-certificate-errors"); add_experimental_option("excludeSwitches", ["enable-logging"]); add_argument('--window-size=1920,1080'); add_argument('--no-sandbox')
     Maximize Browser Window
-    Click Element  //*[@id="root"]/nav/a[2]/button
-    Page Should Contain  Laskuttajan tiedot
+    Page Should Contain  Tervetuloa
 
 Register New User With Invalid Credentials
     Click Element  //*[@id="root"]/div/div/div/a
