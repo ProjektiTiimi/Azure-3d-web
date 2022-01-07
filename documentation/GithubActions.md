@@ -14,3 +14,7 @@ Tässä projektissa on määritelty workflow tiedostot, mitkä seuraavat fronten
 ### Github Actions avainsanat
 
 Workflow tiedoston rakenne ja toiminnot määritellään erilaisten avainsanojen avulla. 
+
+#### on -avainsana
+
+on -avainsana on pakollinen workflow tiedostossa. Siinä määritellään, minkä tapahtuman yhteydessä workflow käynnistyy. 
