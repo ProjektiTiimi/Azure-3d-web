@@ -68,7 +68,7 @@ Open Browser To Login Page
     #options=add_argument("--ignore-certificate-errors"); add_experimental_option("excludeSwitches", ["enable-logging"]); add_argument('--window-size=1920,1080'); add_argument('--no-sandbox')
     Maximize Browser Window
     Click Element  //*[@id="root"]/nav/a[2]/button
-    Page Should Contain  Kirjaudu
+    Page Should Contain  Laskuttajan tiedot
 
 Register New User With Invalid Credentials
     Click Element  //*[@id="root"]/div/div/div/a
