@@ -62,10 +62,10 @@ const Homepage: React.FunctionComponent = () => {
     return(
         <div className='homepage'>
             <h1>Tervetuloa laskut sovellukseen</h1>
+            <h3></h3>
             <h3>
                 {message}
             </h3>
-            <a href="/.auth/login/aad">Login</a>
         </div>
     )
 };
