@@ -7,7 +7,7 @@ Azuren portaalissa on määritelty SWA:n workflow tiedostoon [workflow.yml](http
 
 Uuden Azure-funktion lisääminen swa-projektiin onnistuu helpoiten käyttämällä Visual Studio Coden [swa-lisäosaa](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestaticwebapps). Tämän jälkeen uuden funktion lisääminen onnistuu suoraan kuvassa näkyvällä komennolla
 
-![](/documentation\images\swa-new-function.png?)
+![](/documentation/images/swa-new-function.png?)
 
 Funktion koodit tulevat omaan alikansioonsa, ja kansio sisältää function.json -määrittelytiedoston ja index.ts-tiedoston. TypeScript käännetään JavaScriptiksi dist-kansioon, joka on [määritetty](\tsconfig.json) compilerin outDirectoryksi.
  
@@ -21,7 +21,7 @@ Funktioita suoritettaessa Azuren puolella, tehdään function.json -tiedoston m�
 
 Tietokanta on rakennettu siten, että jokaisella käyttäjällä on oma [collection](https://docs.microsoft.com/en-us/rest/api/cosmos-db/collections) yhteisessä kannassa. Käyttäjän kirjautuessa sisään luodaan linkkaus olemassa olevaan collectioniin, tai luodaan collection mikäli sitä ei vielä ole. Funktio [setContainer](\setContainer\index.ts) luo containerin käyttämällä autentikoituneen käyttäjän userID:tä myös containerin id:nä. Container alustetaan kolmella itemillä, "biller", "customers" sekä "invoices". Esimerkki tietokannan rakenteesta alla:
 
-![](/documentation\images\database.png?)
+![](/documentation/images/database.png?)
 
 ### Kannan linkkaus rajapintaan
 
