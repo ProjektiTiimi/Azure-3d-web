@@ -54,7 +54,7 @@ const Invoiceinfo = () => {
         console.log("currentuser: "+ currentUser)
         if (currentUser) {            
             let obj = JSON.parse(currentUser!);
-            setInput({... input, Tilinumero: obj.tilinumero})
+            setInput({... input, Tilinumero: obj.iban})
         }
     }, []);
 

@@ -18,6 +18,7 @@ const InvoicePDF = () => {
     const [email, setEmail] = useState('');
     const [ytunnus, setYtunnus] = useState('');
     const [nimi, setNimi] = useState('');
+    const [iban, setIban] = useState('');
     const [boolean, setBoolean] = useState<boolean>();
     const [message, setMessage] = useState('');
     
@@ -29,6 +30,7 @@ const InvoicePDF = () => {
             setEmail(obj.email);
             setYtunnus(obj.ytunnus);
             setNimi(obj.username);
+            setIban(obj.iban);
         }
     }, []);
 
