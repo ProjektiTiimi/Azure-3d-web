@@ -9,17 +9,17 @@ Uuden Azure-funktion lisääminen swa-projektiin onnistuu helpoiten käyttämäl
 
 ![](/documentation/images/swa-new-function.png?)
 
-Funktion koodit tulevat omaan alikansioonsa, ja kansio sisältää function.json -määrittelytiedoston ja index.ts-tiedoston. TypeScript käännetään JavaScriptiksi dist-kansioon, joka on [määritetty](\tsconfig.json) compilerin outDirectoryksi.
+Funktion koodit tulevat omaan alikansioonsa, ja kansio sisältää function.json -määrittelytiedoston ja index.ts-tiedoston. TypeScript käännetään JavaScriptiksi dist-kansioon, joka on [määritetty](/api/tsconfig.json) compilerin outDirectoryksi.
  
 ## Projektissa käytettävät funktiot
 
-Projektin rajapinta on toteutettu käyttämällä [HTTP-trigger-funktioita](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript). Funktioiden kansioista löytyvistä function.json -tiedostosta selviää kunkin funktion bindingit kannan suuntaan, sekä funktion kutsuun käytettävä api-polku. Rajapintakutsujen tekeminen onnistuu vain autentikoituneelta käyttäjältä, koska frontend-kansion tiedostossa [staticwebapp.config.json](/frontend\staticwebapp.config.json) on näin määritelty.
+Projektin rajapinta on toteutettu käyttämällä [HTTP-trigger-funktioita](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript). Funktioiden kansioista löytyvistä function.json -tiedostosta selviää kunkin funktion bindingit kannan suuntaan, sekä funktion kutsuun käytettävä api-polku. Rajapintakutsujen tekeminen onnistuu vain autentikoituneelta käyttäjältä, koska frontend-kansion tiedostossa [staticwebapp.config.json](/frontend/staticwebapp.config.json) on näin määritelty.
 
 Funktioita suoritettaessa Azuren puolella, tehdään function.json -tiedoston määrittelemät bindaukset aina ennen itse funktion suorittamista. Tämä tarkoittaa, että virheellisen function.json -tiedoston aiheuttamia ongelmia ei voida logittaa taikka kiertää index.ts-tiedoston koodeilla, eikä esimerkiksi parametrien antaminen bindauksen SQL-querylle tai collectionin nimen säätäminen itse funktion koodissa ole mahdollista. 
 
 ### Kannan rakenne
 
-Tietokanta on rakennettu siten, että jokaisella käyttäjällä on oma [collection](https://docs.microsoft.com/en-us/rest/api/cosmos-db/collections) yhteisessä kannassa. Käyttäjän kirjautuessa sisään luodaan linkkaus olemassa olevaan collectioniin, tai luodaan collection mikäli sitä ei vielä ole. Funktio [setContainer](\setContainer\index.ts) luo containerin käyttämällä autentikoituneen käyttäjän userID:tä myös containerin id:nä. Container alustetaan kolmella itemillä, "biller", "customers" sekä "invoices". Esimerkki tietokannan rakenteesta alla:
+Tietokanta on rakennettu siten, että jokaisella käyttäjällä on oma [collection](https://docs.microsoft.com/en-us/rest/api/cosmos-db/collections) yhteisessä kannassa. Käyttäjän kirjautuessa sisään luodaan linkkaus olemassa olevaan collectioniin, tai luodaan collection mikäli sitä ei vielä ole. Funktio [setContainer](/api/setContainer/index.ts) luo containerin käyttämällä autentikoituneen käyttäjän userID:tä myös containerin id:nä. Container alustetaan kolmella itemillä, "biller", "customers" sekä "invoices". Esimerkki tietokannan rakenteesta alla:
 
 ![](/documentation/images/database.png?)
 
@@ -27,7 +27,7 @@ Tietokanta on rakennettu siten, että jokaisella käyttäjällä on oma [collect
 
 HTTP-trigger-funktiot bindataan cosmosDB-kantaan function.json -tiedostossa. Rivi "connectionStringSetting": "3dwebdb_DOCUMENTDB" viittaa azure static web app:n configure-tiedostossa määriteltyyn muuttujaan, johon on tallennettu cosmosDB:n asetuksista löytyvä "PRIMARY CONNECTION STRING".
 
-Bindauksen voi tehdä sisään- tai ulospäin, riippuen haluaako lukea vai kirjoittaa dataa, vai molempia. Esimerkiksi add-customer -funtion [määrittelytiedostossa](\add-customer\function.json) on linkkaus kantaan molempiin suuntiin; Ensin funktiossa haetaan asiakaslista-array kannasta, seuraavaksi lisätään siihen uusi asiakas, ja lopuksi ylikirjoitetaan vanha array kantaan. 
+Bindauksen voi tehdä sisään- tai ulospäin, riippuen haluaako lukea vai kirjoittaa dataa, vai molempia. Esimerkiksi add-customer -funtion [määrittelytiedostossa](/api/add-customer/function.json) on linkkaus kantaan molempiin suuntiin; Ensin funktiossa haetaan asiakaslista-array kannasta, seuraavaksi lisätään siihen uusi asiakas, ja lopuksi ylikirjoitetaan vanha array kantaan. 
 
 Projektin funktiot on yleisesti luotu siten, että kutsureitti on muotoa /api/${ContainerID}/funktionnimi. Reitissä määriteltyä muuttujaa voidaan näin käyttää function.json -tiedostossa rajaamaan bindaus vain yksittäiseen collectioniin koko tietokannan sijaan. Lisää rajausta voidaan tehdä antamalla esimerkiksi sqlQueryllä. Dokumentaatio CosmosDB-konfiguraatoista löytyy [täältä](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-input?tabs=javascript#configuration).
 
