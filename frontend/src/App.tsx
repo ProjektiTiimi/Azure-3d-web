@@ -18,7 +18,6 @@ import TestiContext from './components/customerContext';
 import invoiceContext from './components/invoiceContext';
 import lineInfoContext from './components/LineInfoContext';
 import editUser from './components/editUser';
-import RegisterUser from './components/userregister';
 
 function App() {
   const [defaultCustomer, setDefaultCustomer] = useState({
@@ -68,7 +67,6 @@ function App() {
             <lineInfoContext.Provider value={lineInfo}>
             <Route path="/invoice" component={Invoice} />
             <Route path="/user" component={editUser} />
-            <Route path="/register" component={RegisterUser} />
             </lineInfoContext.Provider>
             </invoiceContext.Provider>
           </Switch>
