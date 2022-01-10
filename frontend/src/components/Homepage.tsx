@@ -16,7 +16,7 @@ const Homepage: React.FunctionComponent = () => {
             console.log("UserInfo is: " + userInfo.clientPrincipal.userId);
             let id = userInfo.clientPrincipal.userId;
             let userDetails = userInfo.clientPrincipal.userDetails;
-            localStorage.setItem('userId', id);
+            localStorage.setItem('userID', id);
             setMessage("Tervetuloa, " + userDetails);
             getUserData(id);
 
