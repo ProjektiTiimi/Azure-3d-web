@@ -92,7 +92,7 @@ const EditUser = () => {
             name="iban"
             value={input.iban}
           />
-          <button onClick={editUser}>Tallenna</button>
+          <button className = "AddCustomer-btn" onClick={editUser}>Tallenna</button>
           <h4 id="savedText" hidden>Tallennettu</h4>
         </div>
     )
