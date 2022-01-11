@@ -42,4 +42,17 @@ swa start http://localhost:3000 --api-location ./api
 ```
 Tällä komennolla swa emulaattori käynnistää react appin localhost:4280 portissa ja apin localhost:7071 portissa.
 
- 
+ ### Projektin osasten readme-tiedostot alla
+
+[Static Web Apps](https://github.com/ProjektiTiimi/Azure-3d-web/blob/main/documentation/AzureStaticWebApps.md)
+
+[Cosmos DB](https://github.com/ProjektiTiimi/Azure-3d-web/blob/main/documentation/Cosmosdb.md)
+
+[Frontend](https://github.com/ProjektiTiimi/Azure-3d-web/tree/main/frontend#readme)
+
+[API](https://github.com/ProjektiTiimi/Azure-3d-web/tree/main/api#readme)
+
+[Github Actions](https://github.com/ProjektiTiimi/Azure-3d-web/blob/main/documentation/GithubActions.md)
+
+###
+
