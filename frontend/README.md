@@ -26,4 +26,4 @@ npm start
 ```
 Sovellus aukeaa uudessa välilehdessä oletusselaimellasi.
 
-## Testing testing
+## Testing
