@@ -7,6 +7,8 @@ on:
     paths:
     - 'frontend/**'
     - 'api/**'
+    - '!api/README.md'
+    - '!frontend/README.md'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
@@ -14,6 +16,8 @@ on:
     paths:
     - 'frontend/**'
     - 'api/**'
+    - '!api/README.md'
+    - '!frontend/README.md'
 
 jobs:
   build_and_test_job:
